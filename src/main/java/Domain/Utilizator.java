@@ -1,9 +1,11 @@
 package Domain;
 
+import java.io.Serializable;
+
 /**
  * Created by Alexandra Muresan on 3/14/2017.
  */
-public class Utilizator implements HasID<Integer>{
+public class Utilizator implements HasID<Integer>,Serializable{
 
     private Integer id;
 
