@@ -8,19 +8,22 @@ import Services.AppService.IAgentieServer;
 import Utils.Observable;
 import Utils.Observer;
 
+import java.io.Serializable;
+import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by Alexandra Muresan on 4/2/2017.
  */
-public class ClientController implements IAgentieClient, Observable<Excursie> {
+public class ClientController extends UnicastRemoteObject implements IAgentieClient, Observable<Excursie>,Serializable {
 
 
     private IAgentieServer server;
     private Utilizator user;
     List<Observer<Excursie>> observers = new ArrayList<>();
-    public ClientController(IAgentieServer server){
+    public ClientController(IAgentieServer server)throws RemoteException{
         this.server = server;
     }
 

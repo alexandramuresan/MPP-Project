@@ -8,6 +8,8 @@ import Repository.RezervariJdbcRepository;
 import Repository.UtilizatoriJdbcRepository;
 import Services.AppService.IAgentieServer;
 import Services.ModelService.Service;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import java.io.IOException;
 import java.util.Properties;
@@ -20,6 +22,7 @@ public class StartRpcServer {
     private static int defaultPort = 262626;
     public static void main(String[] args){
 
+        /*
         Properties serverProps = new Properties();
         try {
             serverProps.load(StartRpcServer.class.getResourceAsStream("/server.properties"));
@@ -49,6 +52,7 @@ public class StartRpcServer {
         } catch (Exception e) {
             System.err.println("Error starting the server" + e.getMessage());
         }
-
+*/
+        ApplicationContext factory = new ClassPathXmlApplicationContext("classpath:server-spring.xml");
     }
 }

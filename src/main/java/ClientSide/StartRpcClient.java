@@ -9,6 +9,8 @@ import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import java.io.IOException;
 import java.util.Properties;
@@ -29,6 +31,7 @@ public class StartRpcClient extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+        /*
         Properties clientProperties = new Properties();
 
         try {
@@ -48,8 +51,9 @@ public class StartRpcClient extends Application {
 
         System.out.println("Using ip " + serverIp);
         System.out.println("Using port " + serverPort);
-
-        IAgentieServer server = new AgentieServerRpcProxy(serverIp,serverPort);
+*/
+        ApplicationContext factory = new ClassPathXmlApplicationContext("classpath:client-spring.xml");
+        IAgentieServer server = (IAgentieServer)factory.getBean("agentieService");
         ClientController clientController = new ClientController(server);
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(StartRpcClient.class.getClassLoader().getResource("login.fxml"));

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+
+    <util:properties id="jdbcProps" location="classpath:database_config.config"/>
+
+    <bean id="utilizatorRepo" class="Repository.UtilizatoriJdbcRepository">
+        <constructor-arg ref="jdbcProps"/>
+    </bean>
+
+
+    <bean id="excursiiRepo" class="Repository.ExcursiiJdbcRepository">
+        <constructor-arg ref="jdbcProps"/>
+    </bean>
+
+    <bean id="rezervariRepo" class="Repository.RezervariJdbcRepository">
+        <constructor-arg ref="jdbcProps"/>
+    </bean>
+
+    <bean id="service" class="Services.ModelService.Service">
+        <constructor-arg ref="excursiiRepo"/>
+        <constructor-arg ref="rezervariRepo"/>
+        <constructor-arg ref="utilizatorRepo"/>
+    </bean>
+
+    <bean id="chatService" class="ServerSide.AgentieServer">
+        <constructor-arg ref="service"/>
+    </bean>
+
+    <bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+
+        <property name="serviceName" value="AgentieTurism"/>
+        <property name="service" ref="agentieService"/>
+        <property name="serviceInterface" value="Services.AppService.IAgentieServer"/>
+        <property name="servicePort" value="1099"/>
+    </bean>
+
+
+
+</beans>
