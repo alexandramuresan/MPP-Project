@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+
+    <util:properties id="jdbcProps1">
+        <prop key="proj.jdbc.driver">org.sqlite.JDBC</prop>
+        <prop key="proj.jdbc.url">jdbc:sqlite:tasks.db</prop>
+    </util:properties>
+
+    <util:properties id="jdbcProps" location="classpath:database_config.config"/>
+
+    <bean id="excursiiRepo" class="Repository.ExcursiiJdbcRepository">
+        <constructor-arg ref="jdbcProps"/>
+    </bean>
+
+    <bean id="rezervariRepo" class="Repository.RezervariJdbcRepository">
+        <constructor-arg ref="jdbcProps"/>
+    </bean>
+
+    <bean id="controller" class="Services.ModelService.Service">
+        <constructor-arg ref="excursiiRepo"/>
+        <constructor-arg ref="rezervariRepo"/>
+
+    </bean>
+
+
+</beans>
