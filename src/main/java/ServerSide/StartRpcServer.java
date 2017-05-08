@@ -1,18 +1,7 @@
 package ServerSide;
 
-import Domain.Excursie;
-import Networking.AbstractServer;
-import Networking.AgentieRpcConcurrentServer;
-import Repository.ExcursiiJdbcRepository;
-import Repository.RezervariJdbcRepository;
-import Repository.UtilizatoriJdbcRepository;
-import Services.AppService.IAgentieServer;
-import Services.ModelService.Service;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-
-import java.io.IOException;
-import java.util.Properties;
 
 /**
  * Created by Alexandra Muresan on 4/2/2017.

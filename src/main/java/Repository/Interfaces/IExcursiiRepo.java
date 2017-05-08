@@ -1,4 +1,4 @@
-package Repository;
+package Repository.Interfaces;
 
 import Domain.Excursie;
 

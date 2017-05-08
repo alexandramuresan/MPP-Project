@@ -1,19 +1,35 @@
 package Domain;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.io.Serializable;
 
 /**
  * Created by Alexandra Muresan on 3/10/2017.
  */
+@Entity
+@Table(name="excursii")
 public class Excursie implements HasID<Integer>, Serializable{
 
+    @Id
+    @Column(name="id")
     private Integer id;
+    @Column(name="obiectiv")
     private String obiectiv;
+    @Column(name="firma")
     private String firma;
+    @Column(name="ora_plecare")
     private Integer ora_plecare;
+    @Column(name="pret")
     private Double pret;
+    @Column(name="locuri_disponibile")
     private Integer locuri_disponibile;
 
+    public Excursie(){
+
+    }
     public Excursie(Integer id,String obiectiv,String firma,Integer ora_plecare,Double pret,Integer locuri_disponibile){
         this.id = id;
         this.obiectiv = obiectiv;

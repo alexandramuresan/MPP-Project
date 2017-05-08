@@ -3,9 +3,10 @@ package Services.ModelService;
 import Domain.Excursie;
 import Domain.Rezervare;
 import Domain.Utilizator;
-import Repository.ExcursiiJdbcRepository;
-import Repository.RezervariJdbcRepository;
-import Repository.UtilizatoriJdbcRepository;
+import Repository.Hibernate.ExcursiiHibernateRepository;
+import Repository.JDBC.ExcursiiJdbcRepository;
+import Repository.JDBC.RezervariJdbcRepository;
+import Repository.JDBC.UtilizatoriJdbcRepository;
 import Utils.Observer;
 
 import java.util.List;
@@ -15,17 +16,18 @@ import java.util.List;
  */
 public class Service {
 
-    private ExcursiiJdbcRepository excursii_repo;
+    private ExcursiiHibernateRepository excursii_repo;
     private RezervariJdbcRepository rezervari_repo;
     private UtilizatoriJdbcRepository utilizatori_repo;
 
-    public Service(ExcursiiJdbcRepository excursii_repo, RezervariJdbcRepository rezervari_repo,UtilizatoriJdbcRepository utilizatori_repo){
+    public Service(ExcursiiHibernateRepository excursii_repo, RezervariJdbcRepository rezervari_repo, UtilizatoriJdbcRepository utilizatori_repo){
         this.excursii_repo = excursii_repo;
         this.rezervari_repo = rezervari_repo;
         this.utilizatori_repo = utilizatori_repo;
     }
 
     public List<Excursie> getAllExcursii(){
+        System.out.println("here");
         return excursii_repo.getAll();
     }
 

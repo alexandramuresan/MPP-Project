@@ -1,8 +1,8 @@
-package Repository;
+package Repository.JDBC;
 
-import Domain.Excursie;
 import Domain.Rezervare;
-import Domain.Utilizator;
+import Repository.Interfaces.IRezervariRepo;
+import Repository.JDBC.JdbcUtils;
 import Utils.Observer;
 
 import java.sql.Connection;
@@ -18,7 +18,7 @@ import java.util.Properties;
  */
 public class RezervariJdbcRepository implements IRezervariRepo {
 
-    private  JdbcUtils dbUtils;
+    private JdbcUtils dbUtils;
     List<Observer<Rezervare>> observers = new ArrayList<>();
     public RezervariJdbcRepository(Properties prop){
         dbUtils = new JdbcUtils(prop);

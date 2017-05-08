@@ -6,9 +6,9 @@
 <hibernate-configuration>
     <session-factory>
         <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/cms</property>
+        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/agentieturism</property>
         <property name="hibernate.connection.username">root</property>
-        <property name="hibernate.connection.password">kinder</property>
+        <property name="hibernate.connection.password">ale!mur26</property>
         <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
         <property name="hbm2ddl.auto">update</property>
     </session-factory>

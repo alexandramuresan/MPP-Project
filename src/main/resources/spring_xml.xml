@@ -10,11 +10,11 @@
 
     <util:properties id="jdbcProps" location="classpath:database_config.config"/>
 
-    <bean id="excursiiRepo" class="Repository.ExcursiiJdbcRepository">
+    <bean id="excursiiRepo" class="Repository.JDBC.ExcursiiJdbcRepository">
         <constructor-arg ref="jdbcProps"/>
     </bean>
 
-    <bean id="rezervariRepo" class="Repository.RezervariJdbcRepository">
+    <bean id="rezervariRepo" class="Repository.JDBC.RezervariJdbcRepository">
         <constructor-arg ref="jdbcProps"/>
     </bean>
 

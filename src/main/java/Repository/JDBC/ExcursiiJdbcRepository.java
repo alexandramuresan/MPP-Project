@@ -1,6 +1,8 @@
-package Repository;
+package Repository.JDBC;
 
 import Domain.Excursie;
+import Repository.Interfaces.IExcursiiRepo;
+import Repository.JDBC.JdbcUtils;
 import Utils.Observer;
 
 import java.sql.Connection;

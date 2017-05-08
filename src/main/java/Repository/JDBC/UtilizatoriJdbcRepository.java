@@ -1,9 +1,10 @@
-package Repository;
+package Repository.JDBC;
 
 import Domain.Utilizator;
+import Repository.Interfaces.IUtilizatorRepo;
+import Repository.JDBC.JdbcUtils;
 import Utils.Observer;
 
-import javax.rmi.CORBA.Util;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

@@ -1,6 +1,7 @@
-package Repository;
+package Repository.JDBC;
 
 import Domain.HasID;
+import Repository.Interfaces.CRUDRepository;
 import Utils.Observer;
 
 import java.util.ArrayList;

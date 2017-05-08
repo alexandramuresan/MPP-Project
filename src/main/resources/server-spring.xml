@@ -6,16 +6,16 @@
 
     <util:properties id="jdbcProps" location="classpath:database_config.config"/>
 
-    <bean id="utilizatorRepo" class="Repository.UtilizatoriJdbcRepository">
+    <bean id="utilizatorRepo" class="Repository.JDBC.UtilizatoriJdbcRepository">
         <constructor-arg ref="jdbcProps"/>
     </bean>
 
 
-    <bean id="excursiiRepo" class="Repository.ExcursiiJdbcRepository">
-        <constructor-arg ref="jdbcProps"/>
+    <bean id="excursiiRepo" class="Repository.Hibernate.ExcursiiHibernateRepository">
+
     </bean>
 
-    <bean id="rezervariRepo" class="Repository.RezervariJdbcRepository">
+    <bean id="rezervariRepo" class="Repository.JDBC.RezervariJdbcRepository">
         <constructor-arg ref="jdbcProps"/>
     </bean>
 
