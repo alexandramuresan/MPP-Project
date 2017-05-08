@@ -17,12 +17,19 @@ public class JdbcUtils {
     }
     private Connection instance=null;
     private Connection getNewConnection(){
+        System.out.println("-----------here!!!");
         String driver=properties.getProperty("proj.jdbc.driver");
         String url=properties.getProperty("proj.jdbc.url");
+        String user = properties.getProperty("proj.jdbc.user");
+        String password = properties.getProperty("proj.jdbc.pass");
         Connection con=null;
         try {
             Class.forName(driver);
-            con= DriverManager.getConnection(url);
+            if (user!=null && password!=null)
+                con= DriverManager.getConnection(url,user,password);
+            else
+                con=DriverManager.getConnection(url);
+
         } catch (ClassNotFoundException e) {
             System.out.println("Error loading driver "+e);
         } catch (SQLException e) {

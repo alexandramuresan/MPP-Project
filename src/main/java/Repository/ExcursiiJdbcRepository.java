@@ -24,7 +24,7 @@ public class ExcursiiJdbcRepository implements IExcursiiRepo {
 
     public void save(Excursie e){
         Connection con=dbUtils.getConnection();
-        try(PreparedStatement preStmt=con.prepareStatement("insert into Excursii values (?,?,?,?,?,?)")){
+        try(PreparedStatement preStmt=con.prepareStatement("insert into excursii values (?,?,?,?,?,?)")){
             preStmt.setInt(1,e.getId());
             preStmt.setString(2,e.getObiectiv());
             preStmt.setString(3,e.getFirma());
@@ -47,7 +47,7 @@ public class ExcursiiJdbcRepository implements IExcursiiRepo {
     }
     public void delete(Integer id) {
         Connection con = dbUtils.getConnection();
-        try (PreparedStatement preStmt = con.prepareStatement("delete from Excursii where id=?")) {
+        try (PreparedStatement preStmt = con.prepareStatement("delete from excursii where id=?")) {
             preStmt.setInt(1,id);
             int result = preStmt.executeUpdate();
             notifyObservers();
@@ -64,7 +64,7 @@ public class ExcursiiJdbcRepository implements IExcursiiRepo {
     public List<Excursie> getAll(){
         List<Excursie> all = new ArrayList<>();
         Connection con = dbUtils.getConnection();
-        try(PreparedStatement stmt = con.prepareStatement("select * from Excursii")){
+        try(PreparedStatement stmt = con.prepareStatement("select * from excursii")){
             try(ResultSet rs = stmt.executeQuery()){
                 while(rs.next()){
                     Integer id = rs.getInt("id");
@@ -113,7 +113,7 @@ public class ExcursiiJdbcRepository implements IExcursiiRepo {
     public List<Excursie> cautaExursie(String obiectiv,Integer ora1,Integer ora2){
         List<Excursie> all = new ArrayList<>();
         Connection con = dbUtils.getConnection();
-        try(PreparedStatement stmt = con.prepareStatement("select * from Excursii where obiectiv=? and ora_plecare between ? and ? ")){
+        try(PreparedStatement stmt = con.prepareStatement("select * from excursii where obiectiv=? and ora_plecare between ? and ? ")){
 
             stmt.setString(1,obiectiv);
             stmt.setInt(2,ora1);
@@ -149,7 +149,7 @@ public class ExcursiiJdbcRepository implements IExcursiiRepo {
 
     public void updateExcursie(Integer id_excursie,Excursie e){
         Connection con = dbUtils.getConnection();
-        try (PreparedStatement preStmt = con.prepareStatement("update Excursii set locuri_disponibile=? where id=?")) {
+        try (PreparedStatement preStmt = con.prepareStatement("update excursii set locuri_disponibile=? where id=?")) {
 
 
             preStmt.setInt(1,e.getLocuri_disponibile());

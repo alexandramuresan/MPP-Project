@@ -26,7 +26,7 @@ public class RezervariJdbcRepository implements IRezervariRepo {
 
     public void save(Rezervare r){
         Connection con=dbUtils.getConnection();
-        try(PreparedStatement preStmt=con.prepareStatement("insert into Rezervari values (?,?,?,?,?)")){
+        try(PreparedStatement preStmt=con.prepareStatement("insert into rezervari values (?,?,?,?,?)")){
             preStmt.setInt(1,r.getId());
             preStmt.setInt(2,r.getId_excursie());
             preStmt.setString(3,r.getNume_client());
@@ -47,7 +47,7 @@ public class RezervariJdbcRepository implements IRezervariRepo {
     }
     public void delete(Integer id) {
         Connection con = dbUtils.getConnection();
-        try (PreparedStatement preStmt = con.prepareStatement("delete from Rezervari where id=?")) {
+        try (PreparedStatement preStmt = con.prepareStatement("delete from rezervari where id=?")) {
             preStmt.setInt(1,id);
             int result = preStmt.executeUpdate();
             notifyObservers();
@@ -63,7 +63,7 @@ public class RezervariJdbcRepository implements IRezervariRepo {
     public List<Rezervare> getAll(){
         Connection con = dbUtils.getConnection();
         List<Rezervare> all = new ArrayList<>();
-        try(PreparedStatement stmt = con.prepareStatement("select * from Rezervari")){
+        try(PreparedStatement stmt = con.prepareStatement("select * from rezervari")){
             try(ResultSet rs = stmt.executeQuery()){
                 while(rs.next()){
                     Integer id = rs.getInt("id");

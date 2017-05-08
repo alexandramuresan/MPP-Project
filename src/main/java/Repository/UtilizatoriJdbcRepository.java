@@ -38,7 +38,7 @@ public class UtilizatoriJdbcRepository implements IUtilizatorRepo {
 
         List<Utilizator> all = new ArrayList<>();
         Connection con = dbUtils.getConnection();
-        try(PreparedStatement stmt = con.prepareStatement("select * from Utilizator")){
+        try(PreparedStatement stmt = con.prepareStatement("select * from utilizator")){
             try(ResultSet result = stmt.executeQuery()){
                 while(result.next()){
                     Integer id = result.getInt("id");
@@ -51,7 +51,11 @@ public class UtilizatoriJdbcRepository implements IUtilizatorRepo {
         }catch(SQLException ex){
             ex.printStackTrace();
         }
-
+        try{
+            con.close();
+        }catch(SQLException ex){
+            ex.printStackTrace();
+        }
         return all;
     }
 
