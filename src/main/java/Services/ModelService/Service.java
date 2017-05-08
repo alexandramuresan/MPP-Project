@@ -4,6 +4,7 @@ import Domain.Excursie;
 import Domain.Rezervare;
 import Domain.Utilizator;
 import Repository.Hibernate.ExcursiiHibernateRepository;
+import Repository.Hibernate.UtilizatorHibernateRepository;
 import Repository.JDBC.ExcursiiJdbcRepository;
 import Repository.JDBC.RezervariJdbcRepository;
 import Repository.JDBC.UtilizatoriJdbcRepository;
@@ -18,9 +19,9 @@ public class Service {
 
     private ExcursiiHibernateRepository excursii_repo;
     private RezervariJdbcRepository rezervari_repo;
-    private UtilizatoriJdbcRepository utilizatori_repo;
+    private UtilizatorHibernateRepository utilizatori_repo;
 
-    public Service(ExcursiiHibernateRepository excursii_repo, RezervariJdbcRepository rezervari_repo, UtilizatoriJdbcRepository utilizatori_repo){
+    public Service(ExcursiiHibernateRepository excursii_repo, RezervariJdbcRepository rezervari_repo, UtilizatorHibernateRepository utilizatori_repo){
         this.excursii_repo = excursii_repo;
         this.rezervari_repo = rezervari_repo;
         this.utilizatori_repo = utilizatori_repo;

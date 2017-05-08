@@ -1,4 +1,5 @@
 import Repository.Hibernate.ExcursiiHibernateRepository;
+import Repository.Hibernate.UtilizatorHibernateRepository;
 import Repository.JDBC.ExcursiiJdbcRepository;
 import Repository.JDBC.RezervariJdbcRepository;
 import Services.ModelService.Service;
@@ -45,7 +46,7 @@ public class SpringConfig {
         return new UtilizatoriJdbcRepository(jdbcProps);
     }
     @Bean(name="controller")
-    public Service createController(ExcursiiHibernateRepository excursii_repo, RezervariJdbcRepository rezervari_repo, UtilizatoriJdbcRepository utilizatori_repo){
+    public Service createController(ExcursiiHibernateRepository excursii_repo, RezervariJdbcRepository rezervari_repo, UtilizatorHibernateRepository utilizatori_repo){
         return new Service(excursii_repo,rezervari_repo,utilizatori_repo);
     }
 }

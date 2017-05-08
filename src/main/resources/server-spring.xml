@@ -6,8 +6,8 @@
 
     <util:properties id="jdbcProps" location="classpath:database_config.config"/>
 
-    <bean id="utilizatorRepo" class="Repository.JDBC.UtilizatoriJdbcRepository">
-        <constructor-arg ref="jdbcProps"/>
+    <bean id="utilizatorRepo" class="Repository.Hibernate.UtilizatorHibernateRepository">
+
     </bean>
 
 
