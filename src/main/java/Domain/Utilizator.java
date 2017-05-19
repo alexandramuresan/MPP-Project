@@ -22,9 +22,9 @@ public class Utilizator implements HasID<Integer>,Serializable{
         return id;
     }
 
-    @Column(name="username")
+    @Column(name="nume")
     private String username;
-    @Column(name="password")
+    @Column(name="parola")
     private String password;
 
 
@@ -40,6 +40,9 @@ public class Utilizator implements HasID<Integer>,Serializable{
         return password;
     }
 
+    public Utilizator(){
+
+    }
 
     public Utilizator(Integer id, String username, String password){
         this.id = id;

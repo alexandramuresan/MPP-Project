@@ -17,7 +17,6 @@ public class JdbcUtils {
     }
     private Connection instance=null;
     private Connection getNewConnection(){
-        System.out.println("-----------here!!!");
         String driver=properties.getProperty("proj.jdbc.driver");
         String url=properties.getProperty("proj.jdbc.url");
         String user = properties.getProperty("proj.jdbc.user");

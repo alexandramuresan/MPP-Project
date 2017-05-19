@@ -28,7 +28,7 @@ public class Service {
     }
 
     public List<Excursie> getAllExcursii(){
-        System.out.println("here");
+
         return excursii_repo.getAll();
     }
 
@@ -54,6 +54,7 @@ public class Service {
 
     public Utilizator getUtilizator(String username, String password){
         for(Utilizator u : utilizatori_repo.getAll()){
+            System.out.println(u);
             if(u.getUsername().compareTo(username)==0 && u.getPassword().compareTo(password)==0){
                 return u;
             }

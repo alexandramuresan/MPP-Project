@@ -1,42 +1,51 @@
 package ClientSide;
 
 import Domain.Excursie;
+import Domain.Notification;
 import Domain.Rezervare;
 import Domain.Utilizator;
-import Services.AppService.IAgentieClient;
 import Services.AppService.IAgentieServer;
+import Services.AppService.IAgentieServerAMS;
+import Services.AppService.NotificationReceiver;
+import Services.AppService.NotificationSubscriber;
 import Utils.Observable;
 import Utils.Observer;
 
+import javax.swing.*;
 import java.io.Serializable;
 import java.rmi.RemoteException;
-import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Alexandra Muresan on 4/2/2017.
+ * Created by Alexandra Muresan on 5/14/2017.
  */
-public class ClientController extends UnicastRemoteObject implements IAgentieClient, Observable<Excursie>,Serializable {
+public class ClientControllerAMS implements NotificationSubscriber, Observable<Excursie>,Serializable {
 
 
-    private IAgentieServer server;
+    private IAgentieServerAMS server;
     private Utilizator user;
     List<Observer<Excursie>> observers = new ArrayList<>();
-    public ClientController(IAgentieServer server)throws RemoteException{
+    private NotificationReceiver receiver;
+    public void setReceiver(NotificationReceiver receiver) {
+        this.receiver = receiver;
+    }
+    public ClientControllerAMS(IAgentieServerAMS server) {
         this.server = server;
     }
 
     public void login(String username,String password){
         Utilizator utilizator = new Utilizator(username,password);
-        server.login(utilizator, this);
+        server.login(utilizator);
         user = utilizator;
+        receiver.start(this);
 
     }
 
     public void logout(){
-        server.logout(user,this);
+        server.logout(user);
         user = null;
+        receiver.stop();
     }
 
     public List<Excursie> getAllExcursii(){
@@ -48,24 +57,38 @@ public class ClientController extends UnicastRemoteObject implements IAgentieCli
     }
 
     public List<Rezervare> getAllRezervari(){
+        System.out.println("Rezervari size:"+server.getAllRezervari().size());
         return server.getAllRezervari();
     }
     public void rezervaBilete(Integer id,Excursie new_excursie){
         server.rezervaBilete(id,new_excursie);
-       // notifyObservers();
+        //notifyObservers();
     }
     public void addRezervare(Rezervare rez){
         server.addRezervare(rez);
     }
-    @Override
-    public void rezervareEfectuata(Excursie e) {
-        notifyObservers();
-    }
 
+    @Override
+    public void notificationReceived(Notification notif) {
+        System.out.println("NOTIF");
+        try {
+
+            SwingUtilities.invokeLater(()->{
+                switch (notif.getType()) {
+                    case SHOW_UPDATED: {
+                        System.out.println("NOTIFICATION RECEIVED");
+                        notifyObservers();
+                        break;
+                    }
+
+                }});
+        }catch(Exception ex){
+            ex.printStackTrace();
+        }
+    }
 
     @Override
     public void addObserver(Observer<Excursie> o) {
-
         observers.add(o);
     }
 
