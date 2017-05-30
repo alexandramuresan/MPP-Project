@@ -13,4 +13,5 @@ public interface CRUDRepository<E,ID> extends Observable<E>{
     void delete(ID id);
     //void update(ID id,E entity);
     List<E> getAll();
+
 }

@@ -4,6 +4,7 @@ import Domain.Excursie;
 import Repository.Interfaces.IExcursiiRepo;
 import Repository.JDBC.JdbcUtils;
 import Utils.Observer;
+import org.springframework.stereotype.Component;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -16,6 +17,7 @@ import java.util.Properties;
 /**
  * Created by Alexandra Muresan on 3/10/2017.
  */
+
 public class ExcursiiJdbcRepository implements IExcursiiRepo {
 
     private JdbcUtils dbUtils;
@@ -172,6 +174,7 @@ public class ExcursiiJdbcRepository implements IExcursiiRepo {
         }
 
     }
+
 
 
 }

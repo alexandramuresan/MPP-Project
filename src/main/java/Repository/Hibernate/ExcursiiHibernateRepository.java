@@ -10,6 +10,7 @@ import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
 import org.hibernate.service.ServiceRegistryBuilder;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,6 +18,7 @@ import java.util.List;
 /**
  * Created by Alexandra Muresan on 5/8/2017.
  */
+@Component
 public class ExcursiiHibernateRepository implements IExcursiiRepo {
 
     List<Observer<Excursie>> observers = new ArrayList<>();
@@ -64,11 +66,12 @@ public class ExcursiiHibernateRepository implements IExcursiiRepo {
     }
 
     @Override
-    public void delete(Integer integer) {
+    public void delete(Integer id) {
         try{
             Session session = sessionFactory.openSession();
             Transaction transaction = session.beginTransaction();
-            session.delete(integer);
+            Excursie ex = getExcursie(id);
+            session.delete(ex);
             transaction.commit();
             session.close();
         }catch(HibernateException ex){
@@ -121,4 +124,20 @@ public class ExcursiiHibernateRepository implements IExcursiiRepo {
             ex.printStackTrace();
         }
     }
+
+    public Excursie getExcursie(Integer id){
+        List<Excursie> result = new ArrayList<>();
+        try{
+            Session session = sessionFactory.openSession();
+            Transaction transaction = session.beginTransaction();
+            result = session.createQuery("FROM Excursie WHERE id=:id").setParameter("id",id).list();
+            transaction.commit();
+            session.close();
+        }catch(HibernateException ex){
+            ex.printStackTrace();
+        }
+        return result.get(0);
+    }
+
+
 }
